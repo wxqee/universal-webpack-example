@@ -3,7 +3,17 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "dev": "run-p dev:client:build dev:server:build dev:server:delay",
+    "dev:client:build": "webpack-dev-server --hot --config ./webpack.config.client.dev.babel.js",
+    "dev:server:build": "webpack --watch --config ./webpack.config.server.dev.babel.js --colors --display-error-details",
+    "dev:server:delay": "run-s delay dev:server:start",
+    "dev:server:start": "nodemon ./src/start-server --watch ./build/server/server",
+    "prod": "run-s prod:build prod:server:run",
+    "prod:build": "run-p prod:client:build prod:server:build",
+    "prod:client:build": "webpack --config ./webpack.config.client.babel.js --colors --display-error-details",
+    "prod:server:build": "webpack --config ./webpack.config.server.babel.js --colors --display-error-details",
+    "prod:server:run": "node ./src/start-server",
+    "delay": "node ./node_modules/npm-delay 5000"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
@@ -13,5 +23,12 @@
     "hbs": "~4.0.1",
     "morgan": "~1.9.0",
     "serve-favicon": "~2.4.5"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9",
+    "npm-delay": "^1.0.4",
+    "npm-run-all": "^4.1.5",
+    "universal-webpack": "^0.6.9",
+    "webpack-dev-server": "^3.1.14"
   }
 }

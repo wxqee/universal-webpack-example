@@ -4,24 +4,29 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var debug = require('debug')('typescript-vs-flow:app');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+var cwd = process.cwd();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+debug('view engine setup');
+app.set('views', path.join(cwd, 'views'));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+debug('other middlewares');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+debug('other router');
 app.use('/', index);
 app.use('/users', users);
 
