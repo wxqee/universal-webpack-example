@@ -3,19 +3,21 @@
 start
 
 ```
-$ DEBUG=typescript-vs-flow:* PORT=3000 npm run dev
+$ DEBUG=example:* PORT=3000 npm run dev
 ```
 
 ## Production
 
+Need to know that, npm `prod:*` tasks will finally auto add `NODE_ENV=production` by default.
+
 ```
-$ DEBUG=typescript-vs-flow:* NODE_ENV=production npm run prod
+$ DEBUG=example:* npm run prod
 ```
 
 or
 
 ```
 $ npm run prod:build
-$ NODE_ENV=production npm run start
+$ npm run prod:server:start
 ```
 

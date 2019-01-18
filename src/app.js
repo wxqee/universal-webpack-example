@@ -4,8 +4,9 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var debug = require('debug')('typescript-vs-flow:app');
+var debug = require('debug')('example:app');
 
+var isProd = process.env.NODE_ENV === 'production';
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -24,9 +25,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(cwd, 'public')));
 
 debug('other router');
+app.use(function useWebpackChunks(req, res, next) {
+	res.locals.isProd = isProd;
+	res.locals.chunks = app.get('webpack').chunks();
+	debug('res.locals.chunks ==> %j', res.locals.chunks);
+	next();
+});
 app.use('/', index);
 app.use('/users', users);
 

@@ -1,18 +1,19 @@
 {
-  "name": "typescript-vs-flow",
-  "version": "0.0.0",
+  "name": "universal-webpack-example",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "run-p dev:client:build dev:server:build dev:server:delay",
+    "dev": "run-p dev:client:build dev:server:prepare dev:server:build dev:server:delay",
     "dev:client:build": "webpack-dev-server --hot --config ./webpack.config.client.dev.babel.js",
+    "dev:server:prepare": "universal-webpack --settings ./universal-webpack-settings.json prepare",
     "dev:server:build": "webpack --watch --config ./webpack.config.server.dev.babel.js --colors --display-error-details",
     "dev:server:delay": "run-s delay dev:server:start",
-    "dev:server:start": "nodemon ./src/start-server --watch ./build/server/server",
-    "prod": "run-s prod:build prod:server:run",
+    "dev:server:start": "nodemon ./src/start-server --watch ./build/server",
+    "prod": "run-s prod:build prod:server:start",
     "prod:build": "run-p prod:client:build prod:server:build",
-    "prod:client:build": "webpack --config ./webpack.config.client.babel.js --colors --display-error-details",
-    "prod:server:build": "webpack --config ./webpack.config.server.babel.js --colors --display-error-details",
-    "prod:server:run": "node ./src/start-server",
+    "prod:client:build": "NODE_ENV=production webpack --config ./webpack.config.client.babel.js --colors --display-error-details",
+    "prod:server:build": "NODE_ENV=production webpack --config ./webpack.config.server.babel.js --colors --display-error-details",
+    "prod:server:start": "NODE_ENV=production node ./src/start-server",
     "delay": "node ./node_modules/npm-delay 5000"
   },
   "dependencies": {
