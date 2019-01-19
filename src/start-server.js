@@ -1,3 +1,6 @@
+// first to support source-map
+require('source-map-support/register');
+
 // The runner.
 var startServer = require('universal-webpack/server');
 
