@@ -11,7 +11,20 @@ module.exports = {
     filename: '[name].[hash].js'
   },
   module: {
-    rules: [],
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: "babel-loader",
+            options: {
+              presets: ['@babel/preset-env'],
+            },
+          },
+        ],
+      }, // end js|jsx
+    ], // end rules
   },
 };
 

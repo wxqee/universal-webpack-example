@@ -1,4 +1,5 @@
-var debug = require('debug')('example:client-index');
+import createDebug from 'debug';
+const debug = createDebug('example:client-index');
 
 debug('register greeting');
 window.greeting = function greeting(people) {
@@ -9,3 +10,4 @@ debug('register load event');
 document.addEventListener('DOMContentLoaded', function onDomReady() {
 	debug('document is loaded.');
 });
+

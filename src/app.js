@@ -1,17 +1,19 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var debug = require('debug')('example:app');
+import express from 'express';
+import path from 'path';
+import favicon from 'serve-favicon';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import createDebug from 'debug';
 
-var isProd = process.env.NODE_ENV === 'production';
-var index = require('./routes/index');
-var users = require('./routes/users');
+import index from './routes/index';
+import users from './routes/users';
 
-var app = express();
-var cwd = process.cwd();
+const debug = createDebug('example:app');
+const isProd = process.env.NODE_ENV === 'production';
+
+const app = express();
+const cwd = process.cwd();
 
 // view engine setup
 debug('view engine setup');
@@ -55,4 +57,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-module.exports = app;
+export default app;
