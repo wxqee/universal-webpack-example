@@ -2,6 +2,7 @@ var debug = require('debug')('example:webpack-client-dev');
 var config = require('./webpack.config.client.babel');
 var port = 3001;
 
+config.devtool = 'source-map';
 config.output.publicPath = `http://localhost:${port}${config.output.publicPath}`;
 config.devServer = {
   ...config.devServer,
