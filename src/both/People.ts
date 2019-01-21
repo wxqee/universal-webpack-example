@@ -5,14 +5,10 @@ class People {
 
   eyeColor = '';
 
-  constructor(name) {
+  constructor(name: string) {
     this.name = name;
     this.eyeColor = 'brown';
     this.country = '';
-  }
-
-  sayHi() {
-    return 'ha....i.....';
   }
 
   getResume() {

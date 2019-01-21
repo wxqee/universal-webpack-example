@@ -1,14 +1,10 @@
 import People from './People';
 
 class CanadaPeople extends People {
-  constructor(name) {
+  constructor(name: string) {
     super(name);
     this.eyeColor = 'blue';
     this.country = 'Canada';
-  }
-
-  sayHi() {
-    return 'Hi~';
   }
 }
 

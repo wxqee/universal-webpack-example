@@ -1,20 +1,23 @@
-import createDebug from 'debug';
+import * as createDebug from 'debug';
 import { fetchPeopleList } from '../both/namelist';
+import People from "../both/People";
 
 const debug = createDebug('example:client-index');
 
 debug('register greeting');
-window.greeting = function greeting(people) {
+function greeting(people: People) {
   alert(people.name);
 }
 
+Object.assign(window, { greeting });
+
 debug('register load event');
-document.addEventListener('DOMContentLoaded', function onDomReady() {
+document.addEventListener('DOMContentLoaded', function onDomReady(): void {
   debug('document is loaded.');
 
-  fetchPeopleList().then(guys => {
+  fetchPeopleList().then((guys: Array<People>) => {
     const html = ['<ul>'];
-    guys.forEach(guy => {
+    guys.forEach((guy: People) => {
       html.push(`
         <li style="background-color: ${guy.eyeColor}; color: white;">
           ${guy.getResume()}
