@@ -1,21 +1,21 @@
+// @flow
+
+export type CountryEnum = '中国' | 'Canada' | '';
+
 class People {
-  name = 'nobody';
+  name: string = 'nobody';
 
-  country = '';
+  country: CountryEnum = '';
 
-  eyeColor = '';
+  eyeColor: string = '';
 
-  constructor(name) {
+  constructor(name: string) : void {
     this.name = name;
     this.eyeColor = 'brown';
     this.country = '';
   }
 
-  sayHi() {
-    return 'ha....i.....';
-  }
-
-  getResume() {
+  getResume(): string {
     if (!this.country) {
       return `I am ${this.name}, I do not belong to any country, and I have ${this.eyeColor} eyes.`;
     }

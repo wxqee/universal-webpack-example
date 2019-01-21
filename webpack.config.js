@@ -1,3 +1,4 @@
+const FlowWebpackPlugin = require('flow-webpack-plugin');
 const path = require('path');
 const rootDirectory = path.resolve(__dirname);
 
@@ -19,7 +20,7 @@ module.exports = {
           {
             loader: "babel-loader",
             options: {
-              presets: ['@babel/preset-env'],
+              presets: ['@babel/preset-env', '@babel/preset-flow'],
               plugins: ['@babel/plugin-proposal-class-properties'],
             },
           },
@@ -27,5 +28,17 @@ module.exports = {
       }, // end js|jsx
     ], // end rules
   },
+  plugins: [
+    new FlowWebpackPlugin({
+      failOnError: false,
+      failOnErrorWatch: false,
+      reportingSeverity: 'error',
+      printFlowOutput: true,
+      flowPath: require.main.require('flow-bin'),
+      flowArgs: ['--color=always'],
+      // verbose: false,
+      // callback: (result) => {},
+    }),
+  ],
 };
 
