@@ -39,6 +39,8 @@
     "npm-run-all": "^4.1.5",
     "source-map-support": "^0.5.10",
     "ts-loader": "^5.3.3",
+    "tslint": "^5.12.1",
+    "tslint-loader": "^3.5.4",
     "typescript": "^3.2.4",
     "universal-webpack": "^0.6.9",
     "webpack-dev-server": "^3.1.14"

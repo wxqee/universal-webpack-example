@@ -1,8 +1,8 @@
-import ChinesePeople from './ChinesePeople';
 import CanadaPeople from './CanadaPeople';
-import People from "./People";
+import ChinesePeople from './ChinesePeople';
+import {IPeople} from './People';
 
-export type PeopleList = Array<People>;
+export type PeopleList = IPeople[];
 export type fetchPeopleListFunc = () => PromiseLike<PeopleList>;
 
 export const fetchPeopleList: fetchPeopleListFunc = () => Promise.resolve([

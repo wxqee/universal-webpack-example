@@ -1,11 +1,11 @@
 import * as createDebug from 'debug';
 import {fetchPeopleList, PeopleList} from '../both/namelist';
-import People from "../both/People";
+import {IPeople} from '../both/People';
 
 const debug = createDebug('example:client-index');
 
 debug('register greeting');
-function greeting(people: People) {
+function greeting(people: IPeople) {
   alert(people.name);
 }
 
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function onDomReady(): void {
 
   fetchPeopleList().then((guys: PeopleList) => {
     const html = ['<ul>'];
-    guys.forEach((guy: People) => {
+    guys.forEach((guy: IPeople) => {
       html.push(`
         <li style="background-color: ${guy.eyeColor}; color: white;">
           ${guy.getResume()}
@@ -29,4 +29,3 @@ document.addEventListener('DOMContentLoaded', function onDomReady(): void {
     document.querySelector('#guys').innerHTML = html.join('');
   });
 });
-

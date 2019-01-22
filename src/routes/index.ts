@@ -1,15 +1,15 @@
-import {Router, NextFunction, Request, Response} from 'express';
-import {fetchPeopleList, PeopleList} from "../both/namelist";
-import People from "../both/People";
+import {Request, Response, Router} from 'express';
+import {fetchPeopleList, PeopleList} from '../both/namelist';
+import People from '../both/People';
 
 const router = Router();
 
 /* GET home page. */
-router.get('/', function(req: Request, res: Response, next: NextFunction) {
+router.get('/', (req: Request, res: Response) => {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/people', function(req: Request, res: Response): void {
+router.get('/people', (req: Request, res: Response) => {
   try {
     fetchPeopleList()
       .then((guys: PeopleList) => {

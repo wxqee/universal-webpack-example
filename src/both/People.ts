@@ -1,11 +1,15 @@
 export type CountryEnum = '中国' | 'Canada' | '';
 
-class People {
-  name: string = 'nobody';
+export interface IPeople {
+  readonly eyeColor: string;
+  readonly name: string;
+  getResume(): string;
+}
 
-  country: CountryEnum = '';
-
-  eyeColor: string = '';
+class People implements IPeople {
+  public eyeColor: string = '';
+  public readonly name: string = 'nobody';
+  protected country: CountryEnum = '';
 
   constructor(name: string) {
     this.name = name;
@@ -13,7 +17,7 @@ class People {
     this.country = '';
   }
 
-  getResume() {
+  public getResume() {
     if (!this.country) {
       return `I am ${this.name}, I do not belong to any country, and I have ${this.eyeColor} eyes.`;
     }
