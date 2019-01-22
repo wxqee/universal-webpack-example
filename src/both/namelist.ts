@@ -2,9 +2,10 @@ import ChinesePeople from './ChinesePeople';
 import CanadaPeople from './CanadaPeople';
 import People from "./People";
 
-export type fetchPeopleListResult = PromiseLike<Array<People>>;
+export type PeopleList = Array<People>;
+export type fetchPeopleListFunc = () => PromiseLike<PeopleList>;
 
-export const fetchPeopleList = (): fetchPeopleListResult => Promise.resolve([
+export const fetchPeopleList: fetchPeopleListFunc = () => Promise.resolve([
   new ChinesePeople('张三'),
   new CanadaPeople('Jacob White'),
   new ChinesePeople('王二麻'),

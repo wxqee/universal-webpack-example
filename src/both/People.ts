@@ -1,9 +1,11 @@
+export type CountryEnum = '中国' | 'Canada' | '';
+
 class People {
-  name = 'nobody';
+  name: string = 'nobody';
 
-  country = '';
+  country: CountryEnum = '';
 
-  eyeColor = '';
+  eyeColor: string = '';
 
   constructor(name: string) {
     this.name = name;

@@ -1,5 +1,5 @@
 import * as createDebug from 'debug';
-import { fetchPeopleList } from '../both/namelist';
+import {fetchPeopleList, PeopleList} from '../both/namelist';
 import People from "../both/People";
 
 const debug = createDebug('example:client-index');
@@ -15,7 +15,7 @@ debug('register load event');
 document.addEventListener('DOMContentLoaded', function onDomReady(): void {
   debug('document is loaded.');
 
-  fetchPeopleList().then((guys: Array<People>) => {
+  fetchPeopleList().then((guys: PeopleList) => {
     const html = ['<ul>'];
     guys.forEach((guy: People) => {
       html.push(`

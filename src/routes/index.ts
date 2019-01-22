@@ -1,5 +1,5 @@
 import {Router, NextFunction, Request, Response} from 'express';
-import {fetchPeopleList} from "../both/namelist";
+import {fetchPeopleList, PeopleList} from "../both/namelist";
 import People from "../both/People";
 
 const router = Router();
@@ -10,14 +10,14 @@ router.get('/', function(req: Request, res: Response, next: NextFunction) {
 });
 
 router.get('/people', function(req: Request, res: Response): void {
-  fetchPeopleList().then((guys: Array<People>) => {
-    if (!guys.length) {
-      res.json([]);
-      return;
-    }
-
-    res.json(guys.map((guy: People) => guy.getResume()));
-  });
+  try {
+    fetchPeopleList()
+      .then((guys: PeopleList) => {
+        res.json(guys.map((guy: People) => guy.getResume()));
+      });
+  } catch (e) {
+    res.json([]);
+  }
 });
 
 export default router;
