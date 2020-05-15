@@ -4,7 +4,8 @@ const rootDirectory = path.resolve(__dirname);
 module.exports = {
   mode: process.env.NODE_ENV || 'development',
   context: rootDirectory,
-  entry: path.resolve(rootDirectory, 'src/client/index.js'),
+  entry: path.resolve(rootDirectory, 'src/client/index.ts'),
+  devtool: 'source-map',
   output: {
     path: path.resolve(rootDirectory, 'public/dist'),
     publicPath: '/dist/',
@@ -13,7 +14,17 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.ts$/,
+        enforce: 'pre',
+        use: [
+          {
+            loader: 'tslint-loader',
+            options: { /* Loader options go here */ }
+          }
+        ]
+      },
+      {
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [
           {
@@ -24,8 +35,16 @@ module.exports = {
             },
           },
         ],
-      }, // end js|jsx
+      }, // end jsx?
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
     ], // end rules
+  },
+  resolve: {
+    extensions: [ '.tsx', '.ts', '.js' ],
   },
 };
 
