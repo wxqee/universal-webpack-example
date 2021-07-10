@@ -31,3 +31,9 @@ $ npm run prod:build
 $ npm run prod:server:start
 ```
 
+## Flow
+
+- [Flow Instlal Guide](https://flow.org/en/docs/install/)
+- [Flow Webpack Plugin](https://www.npmjs.com/package/flow-webpack-plugin)
+- [Flow Usage](https://flow.org/en/docs/usage/)
+
